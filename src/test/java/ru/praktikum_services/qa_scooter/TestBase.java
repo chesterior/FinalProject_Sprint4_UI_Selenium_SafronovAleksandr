@@ -23,9 +23,10 @@ public class TestBase {
 
     protected WebDriver driver;
     protected String browserName;
+
     @Before
     public void setUp() {
-        if(browserName.equals("chrome")){
+        if (browserName.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
@@ -47,9 +48,9 @@ public class TestBase {
 
     @Parameterized.Parameters
     public static Collection<Object[]> browsers() {
-        return Arrays.asList(new Object[][] {
-                { "chrome" },
-                { "firefox" }
+        return Arrays.asList(new Object[][]{
+                {"chrome"},
+                {"firefox"}
         });
     }
 }

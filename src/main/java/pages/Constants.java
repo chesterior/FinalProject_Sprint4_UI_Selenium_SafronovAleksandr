@@ -18,13 +18,6 @@ public class Constants {
         return textboxAfterDropdown;
     }
 
-    private static String[] dataForFormForWhomScooter = {"Иван", "Иванов", "улица Безнадёги дом 23 кв 13",
-            "+7921112233", "Позвонить по приезде"};
-
-    public static String[] getDataForFormForWhomScooter() {
-        return dataForFormForWhomScooter;
-    }
-
     private static String expectedTextOrderIsPlaced = "Заказ оформлен";
 
     public static String getExpectedTextOrderIsPlaced() {

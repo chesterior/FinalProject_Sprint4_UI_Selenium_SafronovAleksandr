@@ -1,18 +1,23 @@
 package pages;
 
 import org.junit.Assert;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
+@RunWith(Parameterized.class)
 public class OrderPage {
     private final WebDriver driver;
 
     public OrderPage(WebDriver driver) {
         this.driver = driver;
     }
+
 
     // Elements & locators
     private static final By FIELD_NAME = By.cssSelector("[placeholder='* Имя']");
@@ -36,20 +41,21 @@ public class OrderPage {
     protected static final By COOKE_BUTTON = By.xpath(".//button[text()='да все привыкли']");
 
     // actions
-    public OrderPage fillingOutFormForWhomScooter(){
-        driver.findElement(FIELD_NAME).sendKeys(Constants.getDataForFormForWhomScooter()[0]);
-        driver.findElement(FIELD_SURNAME).sendKeys(Constants.getDataForFormForWhomScooter()[1]);
-        driver.findElement(FIELD_ADDRESS).sendKeys(Constants.getDataForFormForWhomScooter()[2]);
+    public OrderPage fillingOutFormForWhomScooter(String firstName, String lastName, String address,
+                                                  String phoneNumber, String commentForCourier) {
+        driver.findElement(FIELD_NAME).sendKeys(firstName);
+        driver.findElement(FIELD_SURNAME).sendKeys(lastName);
+        driver.findElement(FIELD_ADDRESS).sendKeys(address);
         driver.findElement(FIELD_METRO_BUTTON).click();
         driver.findElement(FIELD_METRO).click();
-        driver.findElement(FIELD_PHONE_NUMBER).sendKeys(Constants.getDataForFormForWhomScooter()[3]);
+        driver.findElement(FIELD_PHONE_NUMBER).sendKeys(phoneNumber);
         driver.findElement(NEXT_BUTTON_FORM).click();
         driver.findElement(FIELD_WHEN_TO_BRING).click();
         driver.findElement(FIELD_CHOOSE_DATA).click();
         driver.findElement(FIELD_RENTAL_PERIOD).click();
         driver.findElement(RENTAL_PERIOD_BUTTON).click();
         driver.findElement(FIELD_COLOR_SCOOTER).click();
-        driver.findElement(FIELD_COMMENT_FOR_COURIER).sendKeys(Constants.getDataForFormForWhomScooter()[4]);
+        driver.findElement(FIELD_COMMENT_FOR_COURIER).sendKeys(commentForCourier);
         driver.findElement(SCOOTER_ORDER_FORM_BUTTON).click();
         driver.findElement(MAKE_ORDER_YES_BUTTON).click();
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.
