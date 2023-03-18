@@ -1,5 +1,6 @@
 package ru.praktikum_services.qa_scooter;
 
+import jdk.jfr.Description;
 import org.junit.Test;
 import org.junit.runners.Parameterized;
 import pages.MainPage;
@@ -33,11 +34,24 @@ public class ScooterOrderFormTest extends TestBase {
     }
 
     @Test
-    public void scooterOrder() {
+    @Description("Заказ самоката, кнопка «Заказать» вверху страницы.")
+    public void scooterOrderFirstButtonOrder() {
         MainPage mainPage = new MainPage(driver);
         mainPage.open();
         mainPage.checkCookeIsDisplayed();
-        mainPage.scooterOrderButton();
+        mainPage.scooterOrderFirstButton();
+        OrderPage orderPage = new OrderPage(driver);
+        orderPage.fillingOutFormForWhomScooter(firstName, lastName, address,
+                phoneNumber, commentForCourier);
+    }
+
+    @Test
+    @Description("Заказ самоката, кнопка «Заказать» внизу страницы.")
+    public void scooterOrderSecondButtonOrder() {
+        MainPage mainPage = new MainPage(driver);
+        mainPage.open();
+        mainPage.checkCookeIsDisplayed();
+        mainPage.scooterOrderSecondButton();
         OrderPage orderPage = new OrderPage(driver);
         orderPage.fillingOutFormForWhomScooter(firstName, lastName, address,
                 phoneNumber, commentForCourier);

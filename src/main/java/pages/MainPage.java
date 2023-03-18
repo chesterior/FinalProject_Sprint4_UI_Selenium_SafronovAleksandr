@@ -26,8 +26,10 @@ public class MainPage {
             By.xpath(".//div[@data-accordion-component='AccordionItem']");
     private static final By DROP_DOWN_ELEMENT_TEXT_AFTER_OPEN =
             By.xpath(".//div[@data-accordion-component='AccordionItemPanel']");
-    private static final By SCOOTER_ORDER_BUTTON =
+    private static final By SCOOTER_ORDER_FIRST_BUTTON =
             By.xpath(".//div[@class='Header_Nav__AGCXC']/button[text()='Заказать']");
+    private static final By SCOOTER_ORDER_SECOND_BUTTON =
+            By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button[text()='Заказать']");
 
     // actions
     public MainPage open() {
@@ -43,16 +45,20 @@ public class MainPage {
             WebElement button = webElements.get(i);
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", button);
             button.click();
-            new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.
-                    elementToBeClickable(button.findElement(DROP_DOWN_ELEMENT_TEXT_AFTER_OPEN)));
+            new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions
+                    .elementToBeClickable(button.findElement(DROP_DOWN_ELEMENT_TEXT_AFTER_OPEN)));
             String actualTextboxAfterDropdown = button.findElement(DROP_DOWN_ELEMENT_TEXT_AFTER_OPEN).getText();
             Assert.assertEquals(expectedTextboxAfterDropdown[i], actualTextboxAfterDropdown);
         }
         return this;
     }
 
-    public MainPage scooterOrderButton(){
-        driver.findElement(SCOOTER_ORDER_BUTTON).click();
+    public MainPage scooterOrderFirstButton(){
+        driver.findElement(SCOOTER_ORDER_FIRST_BUTTON).click();
+        return this;
+    }
+    public MainPage scooterOrderSecondButton(){
+        driver.findElement(SCOOTER_ORDER_SECOND_BUTTON).click();
         return this;
     }
 

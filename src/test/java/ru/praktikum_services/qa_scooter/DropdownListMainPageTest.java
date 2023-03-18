@@ -1,5 +1,6 @@
 package ru.praktikum_services.qa_scooter;
 
+import jdk.jfr.Description;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -14,6 +15,7 @@ public class DropdownListMainPageTest extends TestBase {
     }
 
     @Test
+    @Description("Проверка выпадающего списка в разделе «Вопросы о важном»")
     public void dropdownListInSectionImportantQuestions() {
         MainPage mainPage = new MainPage(driver);
         mainPage.open();
